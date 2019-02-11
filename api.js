@@ -2,20 +2,23 @@ function getAndPrintHTMLChunks() {
   var http = require("https");
 
   var requestOptions = {
-    host: "sytantris.github.io"
+    host: "sytantris.github.io",
+    path: "/http-examples/step1.html"
   };
   
   var req = http.get(requestOptions, function (response) {
-    var array = [];
+    // var array = [];
+
+    response.setEncoding("utf8");
 
     response.on("data", function (data) {
       console.log("Data received. Length:", data.length);
-      array.push(data);
+      console.log(data);
+      console.log("\n");
     });
   
     response.on("end", function () {
-      var body = Buffer.concat(array);
-      console.log(body.toString());
+      console.log("Completed Call")
     });
   });
   
